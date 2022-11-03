@@ -38,8 +38,6 @@
 devtools::install_github("wfinsinger/tapas")
 
 
-## Source functions
-source("./R/plot_raw.r")
 
 ## Load packages into the local R Environment
 library(tapas)   # Load the 'tapas' package
@@ -62,11 +60,11 @@ co <- tapas::co_char_data
 # data into the R Environment, for instance using 'read.csv()'.
 # The format of the input data is described in the readme file available on
 # https://github.com/wfinsinger/tapas, or can be viewed by running:
-head(co)
+head(co, 13)
 
 
 #### 2.1. Plot raw data
-plot_raw(co)
+tapas::plot_raw(co)
 
 
 # 3. Check the data  ----------------------------------------------------------
@@ -78,10 +76,10 @@ co <- tapas::check_pretreat(co)
 
 
 co_short <- co[1:30, ]
-plot_raw(co_short, bars = TRUE)
+tapas::plot_raw(co_short, bars = TRUE)
 
 co_gaps <- co_short[-c(11, 12), ]
-plot_raw(co_gaps, bars = TRUE)
+tapas::plot_raw(co_gaps, bars = TRUE)
 
 co_gaps_checked <- tapas::check_pretreat(co_gaps)
 head(co_gaps_checked, 13)
@@ -276,10 +274,10 @@ ggplot(data = arg_sens, aes(x = age_top_i, y = sni_smooth)) +
 
 
 # We can also visually compare the results
-par(mfrow = c(length(thresh_want), 1))
-for (i in 1:length(thresh_want)) {
+par(mfrow = c(length(values_want), 1))
+for (i in 1:length(values_want)) {
         tapas::Plot.Anomalies(co_loc_list[[i]], plot.neg = FALSE)
-        mtext(paste("thresh.value = ", thresh_want[i]), side = 3)
+        mtext(paste("thresh.value = ", values_want[i]), side = 3)
 }
 
 
@@ -341,10 +339,10 @@ ggplot(data = arg_sens, aes(x = age_top_i, y = sni_smooth)) +
 
 
 # We can also visually compare the results
-par(mfrow = c(length(thresh_want), 1))
-for (i in 1:length(thresh_want)) {
+par(mfrow = c(length(values_want), 1))
+for (i in 1:length(values_want)) {
         tapas::Plot.Anomalies(co_loc_list[[i]], plot.neg = FALSE)
-        mtext(paste("thresh.value = ", thresh_want[i]), side = 3)
+        mtext(paste("thresh.value = ", values_want[i]), side = 3)
 }
 
 
